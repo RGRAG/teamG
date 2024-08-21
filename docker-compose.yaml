@@ -1,0 +1,36 @@
+version: '3'
+services:
+  opensearch-node:
+    image: opensearchproject/opensearch:2
+    container_name: opensearch-node
+    environment:
+      - discovery.type=single-node
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=Rgrag1!@#  # 비밀번호는 직접 설정하세요.
+      - plugins.security.ssl.http.enabled=false  # HTTPS 비활성화
+      - plugins.security.disabled=true  # OpenSearch 보안 플러그인 비활성화
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+
+  opensearch-dashboard:
+    image: opensearchproject/opensearch-dashboards:2 
+    container_name: opensearch-dashboard
+    environment:
+      - OPENSEARCH_HOSTS=http://opensearch-node:9200
+      - OPENSEARCH_USERNAME=admin
+      - OPENSEARCH_PASSWORD=your_custom_admin_password  # OpenSearch와 동일한 비밀번호 사용
+      - OPENSEARCH_SSL_VERIFICATIONMODE=none  # SSL 검증 비활성화
+      - OPENSEARCH_SECURITY_ENABLED=false  # Dashboards 보안 비활성화
+    ports:
+      - "5601:5601"  # Dashboard 접속 포트
+    depends_on:
+      - opensearch-node
+
+volumes:
+  opensearch-data:
