@@ -3,7 +3,7 @@
 1. miniconda 설치
 - https://docs.anaconda.com/miniconda/
 2. 라이브러리 환경 자동 설치 
-- conda env export > environment.yml
+- conda env create -f environment.yml
 3. ollama 설치
 - https://ollama.com/download
 4. opensearch 설치(옵션) docker
