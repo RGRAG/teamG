@@ -24,7 +24,7 @@ services:
     environment:
       - OPENSEARCH_HOSTS=http://opensearch-node:9200
       - OPENSEARCH_USERNAME=admin
-      - OPENSEARCH_PASSWORD=your_custom_admin_password  # OpenSearch와 동일한 비밀번호 사용
+      - OPENSEARCH_PASSWORD=Rgrag1!@# # OpenSearch와 동일한 비밀번호 사용
       - OPENSEARCH_SSL_VERIFICATIONMODE=none  # SSL 검증 비활성화
       - OPENSEARCH_SECURITY_ENABLED=false  # Dashboards 보안 비활성화
     ports:
